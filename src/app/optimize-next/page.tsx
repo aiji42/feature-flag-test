@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { SampleFeature } from "@/components/SampleFeature/SampleFeature";
+import { FeatureFlag } from "@/components/FeatureFlag/FeatureFlag";
 
 export default function Home() {
   return (
@@ -109,7 +110,9 @@ export default function Home() {
           </p>
         </a>
       </div>
-      <SampleFeature />
+      <FeatureFlag code={"sample-feature"}>
+        <SampleFeature />
+      </FeatureFlag>
     </main>
   );
 }
