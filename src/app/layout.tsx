@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import NextScript from "next/script";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,6 +25,7 @@ export default function RootLayout({
           r[o][j].add(e+t);setTimeout(function(){if(r[o][j].contains(e+t)){r[o][j].remove(e+t);p['_'+t]=0}},c)
           })(window,document,'documentElement','classList','loading',2000,'M4V6WSWM')`}
       </NextScript>
+      <GoogleAnalytics gaId="G-ZXQTWYEQQQ" />
       <body className={inter.className}>{children}</body>
     </html>
   );
