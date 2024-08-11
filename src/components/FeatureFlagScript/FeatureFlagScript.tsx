@@ -14,7 +14,7 @@ declare global {
 
 export const FeatureFlagScript = () => {
   return (
-    <NextScript>{`
+    <NextScript strategy="beforeInteractive">{`
       window.featureFlags = window.featureFlags || {
         push: (...flags) => {
           window.featureFlags.flags_.push(...flags);
