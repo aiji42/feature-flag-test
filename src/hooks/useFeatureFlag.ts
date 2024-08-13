@@ -4,11 +4,8 @@ export const useFeatureFlag = (code: string) => {
   const [active, setActive] = useState(false);
 
   useEffect(() => {
-    window.__activate = (flag: string) => {
-      if (flag === code) {
-        setActive(true);
-      }
-    };
+    window.featureFlags.addCallback(code, () => setActive(true));
+    return () => window.featureFlags.removeCallback(code);
   }, []);
 
   return { active };

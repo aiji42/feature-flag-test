@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import NextScript from "next/script";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { FeatureFlagScript } from "@/components/FeatureFlagScript/FeatureFlagScript";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,6 +27,7 @@ r[o][j].add(e+t);setTimeout(function(){if(r[o][j].contains(e+t)){r[o][j].remove(
 })(window,document,'documentElement','classList','loading',2000,'TTG682GH')`}
       </NextScript>
       <GoogleAnalytics gaId="G-ZXQTWYEQQQ" />
+      <FeatureFlagScript />
       <body className={inter.className}>{children}</body>
     </html>
   );
