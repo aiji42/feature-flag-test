@@ -1,15 +1,36 @@
+## 実際に動いているところを見てみたいとき
+
+https://feature-flag-test.vercel.app/optimize-next にアクセス。
+
+画面の右下に青色の丸いボタンが表示されていたら、あなたが今アクセスしているページはチャレンジャー。表示されていなかったらオリジナル。  
+ランダムに振られるのでシークレットモードで試してください。
+
+オリジナル側に振られたら、コンソールを開いて
+```js
+window.featureFlags.push("sample-feature")
+```
+を実行すると、チャレンジャー側のコンポーネントが表示されるはず。  
+
+つまり、A/Bテストサービス(ここではOptimize Next)側で、
+- オリジナルのときは何もしない
+- チャレンジャーのときは「JavaScriptを実行」で`window.featureFlags.push("sample-feature")`を実行する
+
+という設定をしている。
+
 ## 使い方
 
 ライブラリとして配信しているわけではないので、コピペして使ってください。
 
 ### サイト側
 
-`FeatureFlagScript`コンポーネント(`src/components/FeatureFlagScript/FeatureFlagScript.tsx`)をlayout.tsxで読み込む。
+`FeatureFlagScript`コンポーネント(`src/components/FeatureFlagScript/FeatureFlagScript.tsx`)を`layout.tsx`などで読み込む。
 ```tsx
-<FeatureFlagScript />
+<head>
+  <FeatureFlagScript />
+</head>
 ```
+(NextScriptの`strategy="beforeInteractive"`で実行されるようにしているので、`<head>`内に設置すること)
 ↑内部的にはフィーチャーフラグ用のグローバルなオブジェクト(`window.featureFlags`)を初期化するためのスクリプトを実行している。  
-(NextScriptの`strategy="beforeInteractive"`で実行されるので、ハイドレートされるよりも先に実行される。)
 
 `FeatureFlag`コンポーネント(`src/components/FeatureFlag/FeatureFlag.tsx`)でテストしたいコンポーネントをラップし、`code`に任意のコードを設定する。  
 このコードはA/Bテストツール側で設定する。
